@@ -77,5 +77,5 @@ if __name__ == '__main__':
                 print "({0.x},{0.y})".format(point)
         else:
             print "no way!"
-    except NameError:
-        print "you must input the value of n, x, y"
+    except NameError, ValueError:
+        print "you must input the value of n, x, y, and the value must be int"
