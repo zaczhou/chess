@@ -19,32 +19,33 @@ class Point(object):
         """
         self.x = int(x)
         self.y = int(y)
-        self.path = path # process
+        self.path = path  # process
 
 
 def go(n, start_point, end_point):
     n = int(n)
-    matrix = [[0 for a in range(n)] for b in range(n)] # use to set where has been to 
+    # use to set where has been to
+    matrix = [[0 for a in range(n)] for b in range(n)]
     routes = [start_point]
     rules = ((1, 2), (2, 1), (1, -2), (2, -1),
-             (-1, -2), (-2, -1), (-2, 1), (-1, 2)) # go way
+             (-1, -2), (-2, -1), (-2, 1), (-1, 2))  # go way
     #m = 0
     while routes:
-        bre_point = routes.pop(0) # get bre_point to test go to end_point
+        bre_point = routes.pop(0)  # get bre_point to test go to end_point
         if bre_point.x == end_point.x and bre_point.y == end_point.y:
             #print m
             return bre_point
-      
+
         for step in rules:
             #m+= 1
             next_point = Point(bre_point.x + step[0],
                                bre_point.y + step[1], [])
             if (0 <= next_point.x < n and 0 <= next_point.y < n
                     and not matrix[next_point.x][next_point.y]):
-                # if point in matrix and did not to go , that is a odds , append it to routes
+                # if point in matrix and did not to go ,that is a odds
                 next_point.path = bre_point.path + [next_point]
                 routes.append(next_point)
-                matrix[next_point.x][next_point.y] = 1 # set 
+                matrix[next_point.x][next_point.y] = 1  # set
 
 if __name__ == '__main__':
     try:
